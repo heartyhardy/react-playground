@@ -13,8 +13,13 @@ class App extends Component {
   }
 
   swapName_handler = () => {
-    let orphand1 = Math.floor(Math.random() * this.state.persons.length);
-    let orphand2 = Math.floor(Math.random() * this.state.persons.length);
+    let orphand1 = 0, orphand2 = 0
+
+    while(orphand1 === orphand2)
+    {
+      orphand1 = Math.floor(Math.random() * this.state.persons.length);
+      orphand2 = Math.floor(Math.random() * this.state.persons.length);
+    }
 
     const {persons} = this.state;
     let temp = persons[orphand1];
@@ -27,7 +32,7 @@ class App extends Component {
     const { persons } = this.state;
     return (
       <div className="App">
-        <button onClick={this.swapName_handler}>Swap</button>
+        <button onClick={this.swapName_handler}>Random Swap</button>
         <Person name={persons[0].name} age={persons[0].age} />
         <Person name={persons[1].name} age={persons[1].age}>Hobbies: Sky diving</Person>
         <Person name={persons[2].name} age={persons[2].age} />
