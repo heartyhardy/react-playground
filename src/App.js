@@ -28,7 +28,7 @@ class App extends Component {
     this.setState({persons});
   }
 
-  setNewName = (newName) => {
+  setNewName_handler = (newName) => {
     this.setState({
       persons: [
         { name: newName, age: 30 },
@@ -38,14 +38,36 @@ class App extends Component {
     })
   }
 
+  onNameChange_handler = (event) => {
+    this.setState({
+      persons: [
+        { name: "Max", age: 30 },
+        { name: event.target.value, age: 20 },
+        { name: "Moi", age: 50 }
+      ]
+    })
+  }
+  
+
   render() {
     const { persons } = this.state;
+    //inline style
+    //cons - hard to use onHover
+    const style = {
+      padding: "0.5rem",
+      margin: "0.5rem 0 0.5rem 0",
+      borderRadius:" 0.5rem",
+      border: "2px solid black",
+      backgroundColor: "orange",
+      outlineStyle: "none",
+      cursor: "pointer"
+    }
     return (
       <div className="App">
-        <button onClick={this.swapName_handler}>Random Swap</button>
+        <button style={style} onClick={this.swapName_handler}>Random Swap</button>
         <Person name={persons[0].name} age={persons[0].age} clickHandler={this.swapName_handler}/>
-        <Person name={persons[1].name} age={persons[1].age}>Hobbies: Sky diving</Person>
-        <Person name={persons[2].name} age={persons[2].age} clickHandler={this.setNewName.bind(this,'Maya')} />
+        <Person name={persons[1].name} age={persons[1].age} changed={this.onNameChange_handler}>Hobbies: Sky diving</Person>
+        <Person name={persons[2].name} age={persons[2].age} clickHandler={this.setNewName_handler.bind(this,'Maya')} />
       </div>
     );
   }
