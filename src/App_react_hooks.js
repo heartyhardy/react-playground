@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import './App.css';
 
 import Person from './components/Person';
+import { stat } from 'fs';
 
 
 const app = props => {
-
+  
   const [state, applyState] = useState({
     persons: [
       { name: "Max", age: 30 },
@@ -26,11 +27,11 @@ const app = props => {
     const {persons} = state;
     let temp = persons[orphand1];
     persons[orphand1] = persons[orphand2];
-    persons[orphand2] = temp;
+    persons[orphand2] = temp;    
     applyState({persons});
-  }
+  }    
 
-    const { persons } = state;
+    const {persons} = state;
     
     return (
       <div className="App">
